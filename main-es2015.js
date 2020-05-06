@@ -6483,7 +6483,7 @@ class PanelServiciosComponent {
     ngOnInit() {
         var res = atob(localStorage.getItem('res'));
         this.idUsuario = res.split("(*/as)");
-        this.getProductosbyUser(this.idUsuario[0]);
+        this.getProductosbyUser(this.idUsuario[2]);
         this.getTiposServiciosbyRubro(this.idUsuario[0]);
     }
     verificarCantProdServ() {

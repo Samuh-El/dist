@@ -12691,7 +12691,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var res = atob(localStorage.getItem('res'));
           this.idUsuario = res.split("(*/as)");
-          this.getProductosbyUser(this.idUsuario[0]);
+          this.getProductosbyUser(this.idUsuario[2]);
           this.getTiposServiciosbyRubro(this.idUsuario[0]);
         }
       }, {
