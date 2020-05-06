@@ -8601,19 +8601,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this7 = this;
 
           this.subiendoimagenesCabecera = true;
+          var envio = 0;
           console.log('imagenes cabecera');
           var formData = new FormData();
-          formData.append('cabecera[]', this.imagenCabecera[0], this.imagenCabecera[0].name);
-          formData.append('cabecera2[]', this.imagenCabecera2[0], this.imagenCabecera2[0].name);
-          formData.append('cabecera3[]', this.imagenCabecera3[0], this.imagenCabecera3[0].name);
-          this.appService.subirImagenesCabeceraNode(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this7.subiendoimagenesCabecera = false;
-            _this7.imagenesCabeceraSubidas = true;
-          }, function (err) {
-            console.log(err);
-            _this7.subiendoimagenesCabecera = false;
-          });
+
+          if (this.imagenCabecera != undefined) {
+            formData.append('cabecera[]', this.imagenCabecera[0], this.imagenCabecera[0].name);
+            envio++;
+          }
+
+          if (this.imagenCabecera2 != undefined) {
+            formData.append('cabecera2[]', this.imagenCabecera2[0], this.imagenCabecera2[0].name);
+            envio++;
+          }
+
+          if (this.imagenCabecera3 != undefined) {
+            formData.append('cabecera3[]', this.imagenCabecera3[0], this.imagenCabecera3[0].name);
+            envio++;
+          }
+
+          if (envio != 0) {
+            this.appService.subirImagenesCabeceraNode(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this7.subiendoimagenesCabecera = false;
+              _this7.imagenesCabeceraSubidas = true;
+            }, function (err) {
+              console.log(err);
+              _this7.subiendoimagenesCabecera = false;
+            });
+          } else {
+            this.subiendoimagenesCabecera = false;
+            console.log('no subio nada');
+          }
         } //segundo metodo, sube las imagenes de las caracteristicas y su informacion
 
       }, {
@@ -8624,23 +8643,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           console.log(this.infoCaracteristicas);
           console.log(this.infoCaracteristicas2);
           console.log(this.infoCaracteristicas3);
+          var envio = 0;
           this.subiendoimagenesCaracteristicas = true;
           console.log('imagenes caracteristicas');
           var formData = new FormData();
-          formData.append('caracteristica[]', this.imagenCaracteristicas[0], this.imagenCaracteristicas[0].name);
-          formData.append('caracteristica2[]', this.imagenCaracteristicas2[0], this.imagenCaracteristicas2[0].name);
-          formData.append('caracteristica3[]', this.imagenCaracteristicas3[0], this.imagenCaracteristicas3[0].name);
-          formData.append('infoCaracteristica[]', this.infoCaracteristicas);
-          formData.append('infoCaracteristica2[]', this.infoCaracteristicas2);
-          formData.append('infoCaracteristica3[]', this.infoCaracteristicas3);
-          this.appService.subirImagenesCaracteristicaNode(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this8.subiendoimagenesCaracteristicas = false;
-            _this8.imagenesCaracteristicasSubidas = true;
-          }, function (err) {
-            console.log(err);
-            _this8.subiendoimagenesCaracteristicas = false;
-          });
+
+          if (this.imagenCaracteristicas != undefined) {
+            formData.append('caracteristica[]', this.imagenCaracteristicas[0], this.imagenCaracteristicas[0].name);
+            envio++;
+          }
+
+          if (this.imagenCaracteristicas2 != undefined) {
+            formData.append('caracteristica2[]', this.imagenCaracteristicas2[0], this.imagenCaracteristicas2[0].name);
+            envio++;
+          }
+
+          if (this.imagenCaracteristicas3 != undefined) {
+            formData.append('caracteristica3[]', this.imagenCaracteristicas3[0], this.imagenCaracteristicas3[0].name);
+            envio++;
+          }
+
+          if (envio != 0) {
+            formData.append('infoCaracteristica[]', this.infoCaracteristicas);
+            formData.append('infoCaracteristica2[]', this.infoCaracteristicas2);
+            formData.append('infoCaracteristica3[]', this.infoCaracteristicas3);
+            this.appService.subirImagenesCaracteristicaNode(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this8.subiendoimagenesCaracteristicas = false;
+              _this8.imagenesCaracteristicasSubidas = true;
+            }, function (err) {
+              console.log(err);
+              _this8.subiendoimagenesCaracteristicas = false;
+            });
+          } else {
+            this.subiendoimagenesCaracteristicas = false;
+          }
         } //tercer metodo, sube la imagen de la pyme y su informacion
 
       }, {
@@ -8651,16 +8688,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.subiendoimagenPyme = true;
           console.log('imagenes pyme');
           var formData = new FormData();
-          formData.append('pyme[]', this.imagenPyme[0], this.imagenPyme[0].name);
-          formData.append('infoPyme[]', this.infoPyme);
-          this.appService.subirImagenPymeNode(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this9.subiendoimagenPyme = false;
-            _this9.imagenPymeSubida = true;
-          }, function (err) {
-            console.log(err);
-            _this9.subiendoimagenPyme = false;
-          });
+          var envio = 0;
+
+          if (this.imagenPyme != undefined) {
+            formData.append('pyme[]', this.imagenPyme[0], this.imagenPyme[0].name);
+            formData.append('infoPyme[]', this.infoPyme);
+            envio++;
+          }
+
+          if (envio != 0) {
+            this.appService.subirImagenPymeNode(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this9.subiendoimagenPyme = false;
+              _this9.imagenPymeSubida = true;
+            }, function (err) {
+              console.log(err);
+              _this9.subiendoimagenPyme = false;
+            });
+          } else {
+            this.subiendoimagenPyme = false;
+            console.log('vacio');
+          }
         } //si no es un alamcen, o sea, que solo puede subir 9 productos
         //sube los 9 productos y su informacion
 
@@ -8672,32 +8720,74 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.subiendoimagenes_PS_NoAlmacen = true;
           console.log('imagenes productos servicios no almacen');
           var formData = new FormData();
-          formData.append('ps[]', this.imagenProdserv[0], this.imagenProdserv[0].name);
-          formData.append('ps2[]', this.imagenProdserv2[0], this.imagenProdserv2[0].name);
-          formData.append('ps3[]', this.imagenProdserv3[0], this.imagenProdserv3[0].name);
-          formData.append('ps4[]', this.imagenProdserv4[0], this.imagenProdserv4[0].name);
-          formData.append('ps5[]', this.imagenProdserv5[0], this.imagenProdserv5[0].name);
-          formData.append('ps6[]', this.imagenProdserv6[0], this.imagenProdserv6[0].name);
-          formData.append('ps7[]', this.imagenProdserv7[0], this.imagenProdserv7[0].name);
-          formData.append('ps8[]', this.imagenProdserv8[0], this.imagenProdserv8[0].name);
-          formData.append('ps9[]', this.imagenProdserv9[0], this.imagenProdserv9[0].name);
-          formData.append('infoPS[]', this.infoProdserv);
-          formData.append('infoPS2[]', this.infoProdserv2);
-          formData.append('infoPS3[]', this.infoProdserv3);
-          formData.append('infoPS4[]', this.infoProdserv4);
-          formData.append('infoPS5[]', this.infoProdserv5);
-          formData.append('infoPS6[]', this.infoProdserv6);
-          formData.append('infoPS7[]', this.infoProdserv7);
-          formData.append('infoPS8[]', this.infoProdserv8);
-          formData.append('infoPS9[]', this.infoProdserv9);
-          this.appService.subirImagenesProductoServicioNode(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this10.subiendoimagenes_PS_NoAlmacen = false;
-            _this10.imagen_PS_NoAlmacenSubida = true;
-          }, function (err) {
-            console.log(err);
-            _this10.subiendoimagenes_PS_NoAlmacen = false;
-          });
+          var envio = 0;
+
+          if (this.imagenProdserv != undefined) {
+            formData.append('ps[]', this.imagenProdserv[0], this.imagenProdserv[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv2 != undefined) {
+            formData.append('ps2[]', this.imagenProdserv2[0], this.imagenProdserv2[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv3 != undefined) {
+            formData.append('ps3[]', this.imagenProdserv3[0], this.imagenProdserv3[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv4 != undefined) {
+            formData.append('ps4[]', this.imagenProdserv4[0], this.imagenProdserv4[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv5 != undefined) {
+            formData.append('ps5[]', this.imagenProdserv5[0], this.imagenProdserv5[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv6 != undefined) {
+            formData.append('ps6[]', this.imagenProdserv6[0], this.imagenProdserv6[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv7 != undefined) {
+            formData.append('ps7[]', this.imagenProdserv7[0], this.imagenProdserv7[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv8 != undefined) {
+            formData.append('ps8[]', this.imagenProdserv8[0], this.imagenProdserv8[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdserv9 != undefined) {
+            formData.append('ps9[]', this.imagenProdserv9[0], this.imagenProdserv9[0].name);
+            envio++;
+          }
+
+          if (envio != 0) {
+            formData.append('infoPS[]', this.infoProdserv);
+            formData.append('infoPS2[]', this.infoProdserv2);
+            formData.append('infoPS3[]', this.infoProdserv3);
+            formData.append('infoPS4[]', this.infoProdserv4);
+            formData.append('infoPS5[]', this.infoProdserv5);
+            formData.append('infoPS6[]', this.infoProdserv6);
+            formData.append('infoPS7[]', this.infoProdserv7);
+            formData.append('infoPS8[]', this.infoProdserv8);
+            formData.append('infoPS9[]', this.infoProdserv9);
+            this.appService.subirImagenesProductoServicioNode(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this10.subiendoimagenes_PS_NoAlmacen = false;
+              _this10.imagen_PS_NoAlmacenSubida = true;
+            }, function (err) {
+              console.log(err);
+              _this10.subiendoimagenes_PS_NoAlmacen = false;
+            });
+          } else {
+            this.subiendoimagenes_PS_NoAlmacen = false;
+          }
         } //si es un alamcen, o sea, que puede subir 30 productos
         //sube los 10 primeros productos y su informacion
 
@@ -8709,38 +8799,74 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.subiendoimagenes_PS_Almacen10 = true;
           console.log('imagenes productos servicios almacen 10');
           var formData = new FormData();
-          formData.append('ps[]', this.imagenProdservAlmacen[0], this.imagenProdservAlmacen[0].name);
-          formData.append('ps2[]', this.imagenProdservAlmacen2[0], this.imagenProdservAlmacen2[0].name);
-          formData.append('ps3[]', this.imagenProdservAlmacen3[0], this.imagenProdservAlmacen3[0].name);
-          formData.append('ps4[]', this.imagenProdservAlmacen4[0], this.imagenProdservAlmacen4[0].name);
-          formData.append('ps5[]', this.imagenProdservAlmacen5[0], this.imagenProdservAlmacen5[0].name);
-          formData.append('ps6[]', this.imagenProdservAlmacen6[0], this.imagenProdservAlmacen6[0].name);
-          formData.append('ps7[]', this.imagenProdservAlmacen7[0], this.imagenProdservAlmacen7[0].name);
-          formData.append('ps8[]', this.imagenProdservAlmacen8[0], this.imagenProdservAlmacen8[0].name);
-          formData.append('ps9[]', this.imagenProdservAlmacen9[0], this.imagenProdservAlmacen9[0].name);
-          formData.append('ps10[]', this.imagenProdservAlmacen10[0], this.imagenProdservAlmacen10[0].name);
-          formData.append('infoPS[]', this.infoProdservAlmacen);
-          formData.append('infoPS2[]', this.infoProdservAlmacen2);
-          formData.append('infoPS3[]', this.infoProdservAlmacen3);
-          formData.append('infoPS4[]', this.infoProdservAlmacen4);
-          formData.append('infoPS5[]', this.infoProdservAlmacen5);
-          formData.append('infoPS6[]', this.infoProdservAlmacen6);
-          formData.append('infoPS7[]', this.infoProdservAlmacen7);
-          formData.append('infoPS8[]', this.infoProdservAlmacen8);
-          formData.append('infoPS9[]', this.infoProdservAlmacen9);
-          formData.append('infoPS10[]', this.infoProdservAlmacen10);
-          this.appService.subirImagenesProductoServicioAlmacen10Node(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this11.subiendoimagenes_PS_Almacen10 = false;
-            _this11.imagen_PS_Almacen10Subida = true;
-            _this11.prodServ0_10 = false;
-            _this11.prodServ10_20 = true;
-            _this11.prodServ20_30 = false;
-            _this11.alertaPSSubidas1_10 = true;
-          }, function (err) {
-            console.log(err);
-            _this11.subiendoimagenes_PS_Almacen10 = false;
-          });
+          var envio = 0;
+
+          if (this.imagenProdservAlmacen != undefined) {
+            formData.append('ps[]', this.imagenProdservAlmacen[0], this.imagenProdservAlmacen[0].name);
+          }
+
+          if (this.imagenProdservAlmacen2 != undefined) {
+            formData.append('ps2[]', this.imagenProdservAlmacen2[0], this.imagenProdservAlmacen2[0].name);
+          }
+
+          if (this.imagenProdservAlmacen3 != undefined) {
+            formData.append('ps3[]', this.imagenProdservAlmacen3[0], this.imagenProdservAlmacen3[0].name);
+          }
+
+          if (this.imagenProdservAlmacen4 != undefined) {
+            formData.append('ps4[]', this.imagenProdservAlmacen4[0], this.imagenProdservAlmacen4[0].name);
+          }
+
+          if (this.imagenProdservAlmacen5 != undefined) {
+            formData.append('ps5[]', this.imagenProdservAlmacen5[0], this.imagenProdservAlmacen5[0].name);
+          }
+
+          if (this.imagenProdservAlmacen6 != undefined) {
+            formData.append('ps6[]', this.imagenProdservAlmacen6[0], this.imagenProdservAlmacen6[0].name);
+          }
+
+          if (this.imagenProdservAlmacen7 != undefined) {
+            formData.append('ps7[]', this.imagenProdservAlmacen7[0], this.imagenProdservAlmacen7[0].name);
+          }
+
+          if (this.imagenProdservAlmacen8 != undefined) {
+            formData.append('ps8[]', this.imagenProdservAlmacen8[0], this.imagenProdservAlmacen8[0].name);
+          }
+
+          if (this.imagenProdservAlmacen9 != undefined) {
+            formData.append('ps9[]', this.imagenProdservAlmacen9[0], this.imagenProdservAlmacen9[0].name);
+          }
+
+          if (this.imagenProdservAlmacen10 != undefined) {
+            formData.append('ps10[]', this.imagenProdservAlmacen10[0], this.imagenProdservAlmacen10[0].name);
+          }
+
+          if (envio != 0) {
+            formData.append('infoPS[]', this.infoProdservAlmacen);
+            formData.append('infoPS2[]', this.infoProdservAlmacen2);
+            formData.append('infoPS3[]', this.infoProdservAlmacen3);
+            formData.append('infoPS4[]', this.infoProdservAlmacen4);
+            formData.append('infoPS5[]', this.infoProdservAlmacen5);
+            formData.append('infoPS6[]', this.infoProdservAlmacen6);
+            formData.append('infoPS7[]', this.infoProdservAlmacen7);
+            formData.append('infoPS8[]', this.infoProdservAlmacen8);
+            formData.append('infoPS9[]', this.infoProdservAlmacen9);
+            formData.append('infoPS10[]', this.infoProdservAlmacen10);
+            this.appService.subirImagenesProductoServicioAlmacen10Node(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this11.subiendoimagenes_PS_Almacen10 = false;
+              _this11.imagen_PS_Almacen10Subida = true;
+              _this11.prodServ0_10 = false;
+              _this11.prodServ10_20 = true;
+              _this11.prodServ20_30 = false;
+              _this11.alertaPSSubidas1_10 = true;
+            }, function (err) {
+              console.log(err);
+              _this11.subiendoimagenes_PS_Almacen10 = false;
+            });
+          } else {
+            this.subiendoimagenes_PS_Almacen10 = false;
+          }
         } //sube los 20 
 
       }, {
@@ -8751,38 +8877,84 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.subiendoimagenes_PS_Almacen20 = true;
           console.log('imagenes productos servicios almacen 20');
           var formData = new FormData();
-          formData.append('ps[]', this.imagenProdservAlmacen11[0], this.imagenProdservAlmacen11[0].name);
-          formData.append('ps2[]', this.imagenProdservAlmacen12[0], this.imagenProdservAlmacen12[0].name);
-          formData.append('ps3[]', this.imagenProdservAlmacen13[0], this.imagenProdservAlmacen13[0].name);
-          formData.append('ps4[]', this.imagenProdservAlmacen14[0], this.imagenProdservAlmacen14[0].name);
-          formData.append('ps5[]', this.imagenProdservAlmacen15[0], this.imagenProdservAlmacen15[0].name);
-          formData.append('ps6[]', this.imagenProdservAlmacen16[0], this.imagenProdservAlmacen16[0].name);
-          formData.append('ps7[]', this.imagenProdservAlmacen17[0], this.imagenProdservAlmacen17[0].name);
-          formData.append('ps8[]', this.imagenProdservAlmacen18[0], this.imagenProdservAlmacen18[0].name);
-          formData.append('ps9[]', this.imagenProdservAlmacen19[0], this.imagenProdservAlmacen19[0].name);
-          formData.append('ps10[]', this.imagenProdservAlmacen20[0], this.imagenProdservAlmacen20[0].name);
-          formData.append('infoPS[]', this.infoProdservAlmacen11);
-          formData.append('infoPS2[]', this.infoProdservAlmacen12);
-          formData.append('infoPS3[]', this.infoProdservAlmacen13);
-          formData.append('infoPS4[]', this.infoProdservAlmacen14);
-          formData.append('infoPS5[]', this.infoProdservAlmacen15);
-          formData.append('infoPS6[]', this.infoProdservAlmacen16);
-          formData.append('infoPS7[]', this.infoProdservAlmacen17);
-          formData.append('infoPS8[]', this.infoProdservAlmacen18);
-          formData.append('infoPS9[]', this.infoProdservAlmacen19);
-          formData.append('infoPS10[]', this.infoProdservAlmacen20);
-          this.appService.subirImagenesProductoServicioAlmacen20Node(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this12.subiendoimagenes_PS_Almacen20 = false;
-            _this12.imagen_PS_Almacen20Subida = true;
-            _this12.prodServ0_10 = false;
-            _this12.prodServ10_20 = false;
-            _this12.prodServ20_30 = true;
-            _this12.alertaPSSubidas10_20 = true;
-          }, function (err) {
-            console.log(err);
-            _this12.subiendoimagenes_PS_Almacen20 = false;
-          });
+          var envio = 0;
+
+          if (this.imagenProdservAlmacen11 != undefined) {
+            formData.append('ps[]', this.imagenProdservAlmacen11[0], this.imagenProdservAlmacen11[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen12 != undefined) {
+            formData.append('ps2[]', this.imagenProdservAlmacen12[0], this.imagenProdservAlmacen12[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen13 != undefined) {
+            formData.append('ps3[]', this.imagenProdservAlmacen13[0], this.imagenProdservAlmacen13[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen14 != undefined) {
+            formData.append('ps4[]', this.imagenProdservAlmacen14[0], this.imagenProdservAlmacen14[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen15 != undefined) {
+            formData.append('ps5[]', this.imagenProdservAlmacen15[0], this.imagenProdservAlmacen15[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen16 != undefined) {
+            formData.append('ps6[]', this.imagenProdservAlmacen16[0], this.imagenProdservAlmacen16[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen17 != undefined) {
+            formData.append('ps7[]', this.imagenProdservAlmacen17[0], this.imagenProdservAlmacen17[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen18 != undefined) {
+            formData.append('ps8[]', this.imagenProdservAlmacen18[0], this.imagenProdservAlmacen18[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen19 != undefined) {
+            formData.append('ps9[]', this.imagenProdservAlmacen19[0], this.imagenProdservAlmacen19[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen20 != undefined) {
+            formData.append('ps10[]', this.imagenProdservAlmacen20[0], this.imagenProdservAlmacen20[0].name);
+            envio++;
+          }
+
+          if (envio != 0) {
+            formData.append('infoPS[]', this.infoProdservAlmacen11);
+            formData.append('infoPS2[]', this.infoProdservAlmacen12);
+            formData.append('infoPS3[]', this.infoProdservAlmacen13);
+            formData.append('infoPS4[]', this.infoProdservAlmacen14);
+            formData.append('infoPS5[]', this.infoProdservAlmacen15);
+            formData.append('infoPS6[]', this.infoProdservAlmacen16);
+            formData.append('infoPS7[]', this.infoProdservAlmacen17);
+            formData.append('infoPS8[]', this.infoProdservAlmacen18);
+            formData.append('infoPS9[]', this.infoProdservAlmacen19);
+            formData.append('infoPS10[]', this.infoProdservAlmacen20);
+            this.appService.subirImagenesProductoServicioAlmacen20Node(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this12.subiendoimagenes_PS_Almacen20 = false;
+              _this12.imagen_PS_Almacen20Subida = true;
+              _this12.prodServ0_10 = false;
+              _this12.prodServ10_20 = false;
+              _this12.prodServ20_30 = true;
+              _this12.alertaPSSubidas10_20 = true;
+            }, function (err) {
+              console.log(err);
+              _this12.subiendoimagenes_PS_Almacen20 = false;
+            });
+          } else {
+            this.subiendoimagenes_PS_Almacen20 = false;
+          }
         } //sube los ultimos 10  productos y su informacion
 
       }, {
@@ -8793,38 +8965,84 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.subiendoimagenes_PS_Almacen30 = true;
           console.log('imagenes productos servicios almacen 30');
           var formData = new FormData();
-          formData.append('ps[]', this.imagenProdservAlmacen21[0], this.imagenProdservAlmacen21[0].name);
-          formData.append('ps2[]', this.imagenProdservAlmacen22[0], this.imagenProdservAlmacen22[0].name);
-          formData.append('ps3[]', this.imagenProdservAlmacen23[0], this.imagenProdservAlmacen23[0].name);
-          formData.append('ps4[]', this.imagenProdservAlmacen24[0], this.imagenProdservAlmacen24[0].name);
-          formData.append('ps5[]', this.imagenProdservAlmacen25[0], this.imagenProdservAlmacen25[0].name);
-          formData.append('ps6[]', this.imagenProdservAlmacen26[0], this.imagenProdservAlmacen26[0].name);
-          formData.append('ps7[]', this.imagenProdservAlmacen27[0], this.imagenProdservAlmacen27[0].name);
-          formData.append('ps8[]', this.imagenProdservAlmacen28[0], this.imagenProdservAlmacen28[0].name);
-          formData.append('ps9[]', this.imagenProdservAlmacen29[0], this.imagenProdservAlmacen29[0].name);
-          formData.append('ps10[]', this.imagenProdservAlmacen30[0], this.imagenProdservAlmacen30[0].name);
-          formData.append('infoPS[]', this.infoProdservAlmacen21);
-          formData.append('infoPS2[]', this.infoProdservAlmacen22);
-          formData.append('infoPS3[]', this.infoProdservAlmacen23);
-          formData.append('infoPS4[]', this.infoProdservAlmacen24);
-          formData.append('infoPS5[]', this.infoProdservAlmacen25);
-          formData.append('infoPS6[]', this.infoProdservAlmacen26);
-          formData.append('infoPS7[]', this.infoProdservAlmacen27);
-          formData.append('infoPS8[]', this.infoProdservAlmacen28);
-          formData.append('infoPS9[]', this.infoProdservAlmacen29);
-          formData.append('infoPS10[]', this.infoProdservAlmacen30);
-          this.appService.subirImagenesProductoServicioAlmacen30Node(this.idUsuario[2], formData).subscribe(function (res) {
-            console.log(res);
-            _this13.subiendoimagenes_PS_Almacen30 = false;
-            _this13.imagen_PS_Almacen30Subida = true;
-            _this13.prodServ0_10 = false;
-            _this13.prodServ10_20 = false;
-            _this13.prodServ20_30 = false;
-            _this13.alertaPSSubidas20_30 = true;
-          }, function (err) {
-            console.log(err);
-            _this13.subiendoimagenes_PS_Almacen30 = false;
-          });
+          var envio = 0;
+
+          if (this.imagenProdservAlmacen21 != undefined) {
+            formData.append('ps[]', this.imagenProdservAlmacen21[0], this.imagenProdservAlmacen21[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen22 != undefined) {
+            formData.append('ps2[]', this.imagenProdservAlmacen22[0], this.imagenProdservAlmacen22[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen23 != undefined) {
+            formData.append('ps3[]', this.imagenProdservAlmacen23[0], this.imagenProdservAlmacen23[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen24 != undefined) {
+            formData.append('ps4[]', this.imagenProdservAlmacen24[0], this.imagenProdservAlmacen24[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen25 != undefined) {
+            formData.append('ps5[]', this.imagenProdservAlmacen25[0], this.imagenProdservAlmacen25[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen26 != undefined) {
+            formData.append('ps6[]', this.imagenProdservAlmacen26[0], this.imagenProdservAlmacen26[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen27 != undefined) {
+            formData.append('ps7[]', this.imagenProdservAlmacen27[0], this.imagenProdservAlmacen27[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen28 != undefined) {
+            formData.append('ps8[]', this.imagenProdservAlmacen28[0], this.imagenProdservAlmacen28[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen29 != undefined) {
+            formData.append('ps9[]', this.imagenProdservAlmacen29[0], this.imagenProdservAlmacen29[0].name);
+            envio++;
+          }
+
+          if (this.imagenProdservAlmacen30 != undefined) {
+            formData.append('ps10[]', this.imagenProdservAlmacen30[0], this.imagenProdservAlmacen30[0].name);
+            envio++;
+          }
+
+          if (envio != 0) {
+            formData.append('infoPS[]', this.infoProdservAlmacen21);
+            formData.append('infoPS2[]', this.infoProdservAlmacen22);
+            formData.append('infoPS3[]', this.infoProdservAlmacen23);
+            formData.append('infoPS4[]', this.infoProdservAlmacen24);
+            formData.append('infoPS5[]', this.infoProdservAlmacen25);
+            formData.append('infoPS6[]', this.infoProdservAlmacen26);
+            formData.append('infoPS7[]', this.infoProdservAlmacen27);
+            formData.append('infoPS8[]', this.infoProdservAlmacen28);
+            formData.append('infoPS9[]', this.infoProdservAlmacen29);
+            formData.append('infoPS10[]', this.infoProdservAlmacen30);
+            this.appService.subirImagenesProductoServicioAlmacen30Node(this.idUsuario[2], formData).subscribe(function (res) {
+              console.log(res);
+              _this13.subiendoimagenes_PS_Almacen30 = false;
+              _this13.imagen_PS_Almacen30Subida = true;
+              _this13.prodServ0_10 = false;
+              _this13.prodServ10_20 = false;
+              _this13.prodServ20_30 = false;
+              _this13.alertaPSSubidas20_30 = true;
+            }, function (err) {
+              console.log(err);
+              _this13.subiendoimagenes_PS_Almacen30 = false;
+            });
+          } else {
+            this.subiendoimagenes_PS_Almacen30 = false;
+          }
         }
       }]);
 
@@ -8927,7 +9145,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "p");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "OnePage es una pagina creada especialmente para cada pyme presente en Productos Chile, con el fin de potenciar su presencia en internet, llegando a nuevos clientes. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "OnePage es una pagina creada especialmente para cada pyme presente en Producto Chile, con el fin de potenciar su presencia en internet, llegando a nuevos clientes. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -9427,7 +9645,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](167, "p");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](168, "Felicidades, su solicitud ha sido completada con exito, un equipo de Productos Chile revisara meticulosamente el contenido de su OnePage para asegurar la calidad del contenido. Una vez finalizado dicho proceso, se le notificara por correo electronico cuando su OnePage este activa.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](168, "Felicidades, su solicitud ha sido completada con exito, un equipo de Producto Chile revisara meticulosamente el contenido de su OnePage para asegurar la calidad del contenido. Una vez finalizado dicho proceso, se le notificara por correo electronico cuando su OnePage este activa.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
