@@ -15018,7 +15018,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             precio: this.precio,
             producto: this.producto,
             servicio: this.servicio,
-            nombre: this.buscar
+            nombre: this.buscar.toLocaleLowerCase()
           };
           this.appService.getProductosServiciosPorFiltros(data).subscribe(function (res) {
             console.log(res);

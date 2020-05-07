@@ -7726,7 +7726,7 @@ class SearchComponent {
             precio: this.precio,
             producto: this.producto,
             servicio: this.servicio,
-            nombre: this.buscar
+            nombre: this.buscar.toLocaleLowerCase()
         };
         this.appService.getProductosServiciosPorFiltros(data).subscribe(res => {
             console.log(res);
